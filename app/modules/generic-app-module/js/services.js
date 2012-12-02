@@ -8,7 +8,7 @@ angular.module('GenericTool.services', [])
 		return function(yepnopeService){
 			// factory can be called various times
 			console.log('yepnope factory called');
-			yepnopeService.load();
+			return yepnopeService.load();
 		};
 	})
 	.service('yepnopeService',function($q, $route, $rootScope) {
