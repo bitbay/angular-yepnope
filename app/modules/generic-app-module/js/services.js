@@ -32,9 +32,15 @@ angular.module('GenericTool.services', [])
 				complete: function () {
 					$rootScope.templates = $rt.templates;
 					//The controllers weren't loaded, manually trigger render
-					if (!$rt.loaded) $rootScope.$apply();	//changed $digest to $apply;
-					$rt.loaded = true;
-					deferred.resolve();
+					if (!$rt.loaded) {
+						$rt.loaded = true;
+						//changed $digest to $apply;
+						$rootScope.$apply(function(){
+							deferred.resolve();
+						});
+					} else {
+						deferred.resolve();
+					}
 				}
 			});
 			return deferred.promise;
